@@ -1,0 +1,4 @@
+github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb h1:J+D1YdyeD05JoJytS4iTSVDSyjP7td49DjxohgdTzRg=
+github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
+gopkg.in/natefinch/lumberjack.v2 v2.2.1 h1:bBRl1b0OH9s/DuPhuXpNl+VtCaJXFZ5/uEFST95x9zc=
+gopkg.in/natefinch/lumberjack.v2 v2.2.1/go.mod h1:YD8tP3GAjkrDg1eZH7EGmyESg/lsYskCTPBJVb9jqSc=
