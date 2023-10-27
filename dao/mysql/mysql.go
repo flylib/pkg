@@ -74,6 +74,6 @@ func execSql(exp *regexp.Regexp, db *gorm.DB, sql string, args map[string]interf
 	for i, key := range inKeys {
 		values[i] = args[key]
 	}
-	sql = rawRegexp.ReplaceAllString(sql, "?")
+	sql = exp.ReplaceAllString(sql, "?")
 	return db.Raw(sql, values...)
 }
