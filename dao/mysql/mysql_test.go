@@ -13,13 +13,13 @@ func TestMysql(t *testing.T) {
 		ID        int64  `gorm:"column:id;primaryKey" json:"id"`  // 币种类型
 		Currency  string `gorm:"column:currency" json:"currency"` // 币别
 		Icon      string `gorm:"column:icon" json:"icon"`
-		Precision int8   `gorm:"column:precision;not null" json:"precision"` // 保留小数位数
+		Precision int8   `gorm:"column:decimals;not null" json:"precision"` // 保留小数位数
 	}
 
 	var result []CfgCurrency
-	err = db.ExecRawSql(`
+	err = db.Raw(`
 	select * from cfg_currency
-`, nil).Find(&result).Error
+`).Find(&result).Error
 	if err != nil {
 		t.Fatal(err)
 	}

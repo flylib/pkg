@@ -4,17 +4,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
-	"regexp"
 )
-
-var (
-	pcdRegexp, rawRegexp *regexp.Regexp
-)
-
-func init() {
-	pcdRegexp, _ = regexp.Compile(`@i_(\w+)`)
-	rawRegexp, _ = regexp.Compile(`{(\w+)}`)
-}
 
 type Cli struct {
 	*gorm.DB
@@ -54,26 +44,4 @@ func Connect(dsn string, options ...Option) (*Cli, error) {
 	}
 
 	return &Cli{DB: db}, err
-}
-
-func (c *Cli) Begin() *Tx {
-	return &Tx{c.DB.Begin()}
-}
-
-func (c *Cli) ExecProcedure(sql string, args map[string]interface{}) *gorm.DB {
-	return execSql(pcdRegexp, c.DB, sql, args)
-}
-
-func (c *Cli) ExecRawSql(sql string, args map[string]interface{}) *gorm.DB {
-	return execSql(rawRegexp, c.DB, sql, args)
-}
-
-func execSql(exp *regexp.Regexp, db *gorm.DB, sql string, args map[string]interface{}) *gorm.DB {
-	inKeys := exp.FindAllString(sql, -1)
-	values := make([]interface{}, len(inKeys))
-	for i, key := range inKeys {
-		values[i] = args[key]
-	}
-	sql = exp.ReplaceAllString(sql, "?")
-	return db.Raw(sql, values...)
 }

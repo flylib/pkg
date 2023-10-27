@@ -1,7 +1,5 @@
 package mysql
 
-import "regexp"
-
 type Option func(*option)
 
 // LogLevel log level
@@ -40,25 +38,5 @@ func WithLogLevel(lv LogLevel) Option {
 func WithMaxIdleConns(num int) Option {
 	return func(o *option) {
 		o.maxIdleConns = num
-	}
-}
-
-func WithRawParamRegexp(exp string) Option {
-	return func(o *option) {
-		var err error
-		rawRegexp, err = regexp.Compile(exp)
-		if err != nil {
-			panic(err)
-		}
-	}
-}
-
-func WithProcedureParamRegexp(exp string) Option {
-	return func(o *option) {
-		var err error
-		pcdRegexp, err = regexp.Compile(exp)
-		if err != nil {
-			panic(err)
-		}
 	}
 }
