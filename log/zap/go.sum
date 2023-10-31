@@ -3,6 +3,8 @@ github.com/flylib/interface v0.0.0-20231026023156-4a1cafcca933 h1:27Tuff1vg9rC4Q
 github.com/flylib/interface v0.0.0-20231026023156-4a1cafcca933/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
 github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb h1:J+D1YdyeD05JoJytS4iTSVDSyjP7td49DjxohgdTzRg=
 github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
+github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a h1:H1vnrMBvr/ptZxDC9stuxj8Y6R/JjLJcC+mH5wEAaRs=
+github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/stretchr/testify v1.8.1 h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk=
 go.uber.org/goleak v1.2.0 h1:xqgm/S+aQvhWFTtR0XK3Jvg7z8kGV8P4X14IzwN3Eqk=

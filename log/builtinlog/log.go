@@ -2,7 +2,7 @@ package builtinlog
 
 import (
 	"fmt"
-	"github.com/flylib/interface/log"
+	Ilog "github.com/flylib/interface/log"
 	"gopkg.in/natefinch/lumberjack.v2"
 	"log"
 	"os"
