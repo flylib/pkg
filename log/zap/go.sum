@@ -1,8 +1,4 @@
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
-github.com/flylib/interface v0.0.0-20231026023156-4a1cafcca933 h1:27Tuff1vg9rC4QY0Ct/ecK2VDkXbQdUK/DJxio037MY=
-github.com/flylib/interface v0.0.0-20231026023156-4a1cafcca933/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
-github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb h1:J+D1YdyeD05JoJytS4iTSVDSyjP7td49DjxohgdTzRg=
-github.com/flylib/interface v0.0.0-20231026024429-34fca767eabb/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
 github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a h1:H1vnrMBvr/ptZxDC9stuxj8Y6R/JjLJcC+mH5wEAaRs=
 github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
