@@ -1,4 +1,4 @@
-package log
+package builtinlog
 
 import "testing"
 

@@ -1,4 +1,4 @@
-package log
+package builtinlog
 
 type Option func(g *option)
 

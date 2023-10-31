@@ -1,4 +1,4 @@
-module github.com/flylib/pkg/log/log
+module github.com/flylib/pkg/log/builtinlog
 
 go 1.18
 
