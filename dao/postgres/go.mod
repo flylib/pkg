@@ -1,4 +1,4 @@
-module github.com/flylib/pkg/dao/postgresql
+module github.com/flylib/pkg/dao/postgre
 
 go 1.22.3
 

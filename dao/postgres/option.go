@@ -1,4 +1,4 @@
-package postgresql
+package postgres
 
 import (
 	"strconv"
@@ -41,10 +41,25 @@ func (o option) getDSN() string {
 		"password=" + o.password,
 		"dbname=" + o.database,
 		"port=" + o.port,
-		"sslmode=" + o.sslmode,
-		"TimeZone=" + o.timezone,
+		"sslmode=" + o.getSSLMode(),
+		"TimeZone=" + o.getTimeZone(),
 	}
 	return strings.Join(args, " ")
+}
+
+func (o option) getSSLMode() string {
+	if o.sslmode == "" {
+		return "disable"
+	}
+	return o.sslmode
+}
+
+// default timezone Asia/Shanghai
+func (o option) getTimeZone() string {
+	if o.timezone == "" {
+		return "Asia/Shanghai"
+	}
+	return o.timezone
 }
 
 func WithHost(host string) Option {
@@ -74,6 +89,16 @@ func WithPassword(password string) Option {
 func WithDatabase(database string) Option {
 	return func(o *option) {
 		o.database = database
+	}
+}
+
+func WithSSLMode(sslmode bool) Option {
+	return func(o *option) {
+		if sslmode {
+			o.sslmode = "enable"
+		} else {
+			o.sslmode = "disable"
+		}
 	}
 }
 
