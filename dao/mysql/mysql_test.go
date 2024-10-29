@@ -3,7 +3,7 @@ package mysql
 import "testing"
 
 func TestMysql(t *testing.T) {
-	db, err := Connect("root:123456@tcp(192.168.119.128:3306)/poker?charset=utf8mb4&parseTime=True&loc=Local")
+	db, err := Connect()
 	if err != nil {
 		t.Fatal(err)
 	}
