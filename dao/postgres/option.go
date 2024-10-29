@@ -53,6 +53,7 @@ func newOption() *option {
 		port:     "5432",
 		sslmode:  "disable",
 		timezone: "Asia/Shanghai",
+		database: "postgers",
 		logLevel: Error,
 	}
 }
