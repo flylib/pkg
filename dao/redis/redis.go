@@ -9,18 +9,16 @@ type Cli struct {
 	*redis.Client
 }
 
-func Connect(host string, options ...Option) (*Cli, error) {
-	o := redis.Options{
-		Addr: host,
-	}
-
+func Connect(options ...Option) (*Cli, error) {
+	o := newOption()
 	for _, f := range options {
-		f(&o)
+		f(o)
 	}
+	db := redis.NewClient(o)
 
-	rdb := redis.NewClient(&o)
-
-	return &Cli{
-		rdb,
-	}, rdb.Ping(context.Background()).Err()
+	err := db.Ping(context.Background()).Err()
+	if err != nil {
+		return nil, err
+	}
+	return &Cli{db}, nil
 }

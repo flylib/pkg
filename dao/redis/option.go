@@ -1,8 +1,17 @@
 package redis
 
-import "github.com/redis/go-redis/v9"
+import (
+	"github.com/redis/go-redis/v9"
+	"time"
+)
 
 type Option func(options *redis.Options)
+
+func newOption() *redis.Options {
+	return &redis.Options{
+		Addr: "127.0.0.1:6379",
+	}
+}
 
 func WithDB(db int) Option {
 	return func(o *redis.Options) {
@@ -10,10 +19,27 @@ func WithDB(db int) Option {
 	}
 }
 
-func WithAuth(user, pwd string) Option {
+func WithDialTimeout(timeout time.Duration) Option {
+	return func(o *redis.Options) {
+		o.DialTimeout = timeout
+	}
+}
+
+func ReadTimeout(timeout time.Duration) Option {
+	return func(o *redis.Options) {
+		o.ReadTimeout = timeout
+	}
+}
+func WriteTimeout(timeout time.Duration) Option {
+	return func(o *redis.Options) {
+		o.WriteTimeout = timeout
+	}
+}
+
+func WithAuth(user, password string) Option {
 	return func(o *redis.Options) {
 		o.Username = user
-		o.Password = pwd
+		o.Password = password
 	}
 }
 
@@ -22,7 +48,6 @@ func WithAuth(user, pwd string) Option {
 func WithMaxOpenConns(num int) Option {
 	return func(o *redis.Options) {
 		o.MaxActiveConns = num
-		o.MaxIdleConns = num
 	}
 }
 
