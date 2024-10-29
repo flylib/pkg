@@ -10,37 +10,36 @@ type Cli struct {
 	*gorm.DB
 }
 
-func Connect(dsn string, options ...Option) (*Cli, error) {
-	opt := option{}
+func Connect(options ...Option) (*Cli, error) {
+	o := newOption()
 	for _, f := range options {
-		f(&opt)
-	}
-	if int(opt.logLevel) == 0 {
-		opt.logLevel = Error
+		f(o)
 	}
 
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.LogLevel(opt.logLevel)),
+	db, err := gorm.Open(mysql.Open(o.getDSN()), &gorm.Config{
+		Logger: logger.Default.LogMode(logger.LogLevel(o.logLevel)),
 	})
 	if err != nil {
 		return nil, err
 	}
 
-	sqlDB, err := db.DB()
-	if err != nil {
-		return nil, err
-	}
-	err = sqlDB.Ping()
+	//DB is a database handle representing a pool of zero or more underlying connections.
+	connPool, err := db.DB()
 	if err != nil {
 		return nil, err
 	}
 
-	if opt.maxOpenConns >= opt.maxIdleConns {
-		sqlDB.SetMaxOpenConns(opt.maxOpenConns)
+	err = connPool.Ping()
+	if err != nil {
+		return nil, err
 	}
 
-	if opt.maxIdleConns > 0 {
-		sqlDB.SetMaxIdleConns(opt.maxIdleConns)
+	if o.maxOpenConns >= o.maxIdleConns {
+		connPool.SetMaxOpenConns(o.maxOpenConns)
+	}
+
+	if o.maxIdleConns > 0 {
+		connPool.SetMaxIdleConns(o.maxIdleConns)
 	}
 
 	return &Cli{DB: db}, err

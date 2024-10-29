@@ -11,12 +11,9 @@ type Cli struct {
 }
 
 func Connect(options ...Option) (*Cli, error) {
-	o := option{}
+	o := newOption()
 	for _, f := range options {
-		f(&o)
-	}
-	if int(o.logLevel) == 0 {
-		o.logLevel = Error
+		f(o)
 	}
 
 	db, err := gorm.Open(postgres.Open(o.getDSN()), &gorm.Config{
@@ -26,21 +23,23 @@ func Connect(options ...Option) (*Cli, error) {
 		return nil, err
 	}
 
-	sqlDB, err := db.DB()
+	//DB is a database handle representing a pool of zero or more underlying connections.
+	connPool, err := db.DB()
 	if err != nil {
 		return nil, err
 	}
-	err = sqlDB.Ping()
+
+	err = connPool.Ping()
 	if err != nil {
 		return nil, err
 	}
 
 	if o.maxOpenConns >= o.maxIdleConns {
-		sqlDB.SetMaxOpenConns(o.maxOpenConns)
+		connPool.SetMaxOpenConns(o.maxOpenConns)
 	}
 
 	if o.maxIdleConns > 0 {
-		sqlDB.SetMaxIdleConns(o.maxIdleConns)
+		connPool.SetMaxIdleConns(o.maxIdleConns)
 	}
 
 	return &Cli{DB: db}, err

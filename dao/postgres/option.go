@@ -41,25 +41,20 @@ func (o option) getDSN() string {
 		"password=" + o.password,
 		"dbname=" + o.database,
 		"port=" + o.port,
-		"sslmode=" + o.getSSLMode(),
-		"TimeZone=" + o.getTimeZone(),
+		"sslmode=" + o.sslmode,
+		"TimeZone=" + o.timezone,
 	}
 	return strings.Join(args, " ")
 }
 
-func (o option) getSSLMode() string {
-	if o.sslmode == "" {
-		return "disable"
+func newOption() *option {
+	return &option{
+		host:     "localhost",
+		port:     "5432",
+		sslmode:  "disable",
+		timezone: "Asia/Shanghai",
+		logLevel: Error,
 	}
-	return o.sslmode
-}
-
-// default timezone Asia/Shanghai
-func (o option) getTimeZone() string {
-	if o.timezone == "" {
-		return "Asia/Shanghai"
-	}
-	return o.timezone
 }
 
 func WithHost(host string) Option {
@@ -74,14 +69,9 @@ func WithPort(port int) Option {
 	}
 }
 
-func WithUser(user string) Option {
+func WithAuth(user, password string) Option {
 	return func(o *option) {
 		o.user = user
-	}
-}
-
-func WithPassword(password string) Option {
-	return func(o *option) {
 		o.password = password
 	}
 }
