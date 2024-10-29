@@ -1,6 +1,6 @@
 module github.com/flylib/pkg/dao/postgre
 
-go 1.22.3
+go 1.18
 
 require (
 	gorm.io/driver/postgres v1.5.9
