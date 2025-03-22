@@ -1,4 +1,4 @@
-module github.com/flylib/pkg/dao/mysql
+module github.com/flylib/pkg/mysql
 
 go 1.18
 

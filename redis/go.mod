@@ -1,4 +1,4 @@
-module github.com/flylib/pkg/dao/redis
+module github.com/flylib/pkg/redis
 
 go 1.18
 

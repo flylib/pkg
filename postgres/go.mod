@@ -1,4 +1,4 @@
-module github.com/flylib/pkg/dao/postgres
+module github.com/flylib/pkg/postgres
 
 go 1.18
 
