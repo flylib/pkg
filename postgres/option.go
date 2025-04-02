@@ -26,6 +26,7 @@ type option struct {
 	maxOpenConns                                            int
 	maxIdleConns                                            int
 	logLevel                                                LogLevel
+	dsn                                                     string //Data Source Name
 }
 
 /*
@@ -35,6 +36,9 @@ postgers：host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=
 */
 
 func (o option) getDSN() string {
+	if o.dsn != "" {
+		return o.dsn
+	}
 	args := []string{
 		"host=" + o.host,
 		"user=" + o.user,
@@ -109,5 +113,11 @@ func WithLogLevel(lv LogLevel) Option {
 func WithMaxIdleConns(num int) Option {
 	return func(o *option) {
 		o.maxIdleConns = num
+	}
+}
+
+func WithDSN(dsn string) Option {
+	return func(o *option) {
+		o.dsn = dsn
 	}
 }
