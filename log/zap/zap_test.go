@@ -5,15 +5,18 @@ import (
 )
 
 func TestZaplog(t *testing.T) {
-	sugaredLogger := NewZapLogger(
+	logger := NewZapLogger(
 		WithSyncFile("./info.log"),
 		WithSyncConsole(),
+		WithCallDepth(1),
 		//MinPrintLevel(DebugLevel),
-	).Sugar()
+	)
 
-	for i := 0; i < 10; i++ {
-		sugaredLogger.Info("hello", i)
-		sugaredLogger.Debug("hello", i)
-		sugaredLogger.Infof("hello %d", i)
+	for i := 0; i < 1; i++ {
+		logger.Debug("hello", i)
+		logger.Warn("hello", i)
+		logger.Infof("hello %d", i)
+		logger.Warnf("hello %d", i)
+		logger.Errorf("hello %d", i)
 	}
 }

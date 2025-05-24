@@ -1,6 +1,10 @@
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a h1:H1vnrMBvr/ptZxDC9stuxj8Y6R/JjLJcC+mH5wEAaRs=
 github.com/flylib/interface v0.0.0-20231030075616-76c4e9b38c2a/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
+github.com/flylib/interface v0.0.0-20250524092605-ee8864c75db1 h1:qC+LIM4cJgf8uvSTmMje/cBiim1lT/6oUWsGf86A1NM=
+github.com/flylib/interface v0.0.0-20250524092605-ee8864c75db1/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
+github.com/flylib/interface v0.0.0-20250524094056-c00318bffc9d h1:VOlrBll0BgsjFNul4xnPPQXez0fRTfztnkaJwlGEEUY=
+github.com/flylib/interface v0.0.0-20250524094056-c00318bffc9d/go.mod h1:NgCt9XMId9KtHj9LeXkpE9ZEuW/5H69KixYv8aq9O64=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/stretchr/testify v1.8.1 h1:w7B6lhMri9wdJUVmEZPGGhZzrYTPvgJArz7wNPgYKsk=
 go.uber.org/goleak v1.2.0 h1:xqgm/S+aQvhWFTtR0XK3Jvg7z8kGV8P4X14IzwN3Eqk=

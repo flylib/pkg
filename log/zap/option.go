@@ -1,6 +1,6 @@
 package zaplog
 
-import Ilog "github.com/flylib/interface/log"
+import Ilog "github.com/flylib/interface"
 
 type Option func(o *option)
 

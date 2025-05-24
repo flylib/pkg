@@ -1,7 +1,7 @@
 package zaplog
 
 import (
-	Ilog "github.com/flylib/interface/log"
+	Ilog "github.com/flylib/interface"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -10,7 +10,58 @@ import (
 	"time"
 )
 
-func NewZapLogger(options ...Option) *zap.Logger {
+// 编译期判断是否实现了接口
+var _ Ilog.ILogger = (*Logger)(nil) // 指针类型实现接口
+type Logger struct {
+	sugar *zap.SugaredLogger
+}
+
+func (l *Logger) Debug(args ...any) {
+	l.sugar.Debugln(args)
+}
+
+func (l *Logger) Info(args ...any) {
+	l.sugar.Infoln(args)
+}
+
+func (l *Logger) Warn(args ...any) {
+	l.sugar.Warnln(args)
+}
+
+func (l *Logger) Error(args ...any) {
+	l.sugar.Errorln(args)
+}
+
+func (l *Logger) Fatal(args ...any) {
+	l.sugar.Fatalln(args)
+}
+
+func (l *Logger) Debugf(format string, args ...any) {
+	l.sugar.Debugf(format, args...)
+}
+
+func (l *Logger) Infof(format string, args ...any) {
+	l.sugar.Infof(format, args...)
+}
+
+func (l *Logger) Warnf(format string, args ...any) {
+	l.sugar.Warnf(format, args...)
+}
+
+func (l *Logger) Errorf(format string, args ...any) {
+	l.sugar.Errorf(format, args...)
+}
+
+func (l *Logger) Fatalf(format string, args ...any) {
+	l.sugar.Fatalf(format, args...)
+}
+
+func NewZapLogger(options ...Option) *Logger {
+	logger := NewZapper(options...).Sugar()
+	return &Logger{logger}
+}
+
+func NewZapper(options ...Option) *zap.Logger {
 	opt := option{}
 	for _, f := range options {
 		f(&opt)
