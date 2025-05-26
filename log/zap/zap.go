@@ -36,16 +36,15 @@ func NewZapper(options ...Option) *zap.Logger {
 
 	//log encoder config
 	cfg := zapcore.EncoderConfig{
-		CallerKey:     "caller", // 打印文件名和行数 json格式时生效
-		LevelKey:      "lv",
-		MessageKey:    "msg",
-		TimeKey:       "time",
-		StacktraceKey: "trace",
-		LineEnding:    zapcore.DefaultLineEnding,
-		EncodeTime:    customTimeEncoder, // 自定义时间格式
-		//EncodeLevel:    zapcore.CapitalLevelEncoder, // 小写编码器
-		EncodeLevel:    zapcore.LowercaseColorLevelEncoder, // 彩色日志等级
-		EncodeCaller:   zapcore.ShortCallerEncoder,         // 全路径编码器
+		CallerKey:      "caller", // 打印文件名和行数 json格式时生效
+		LevelKey:       "lv",
+		MessageKey:     "msg",
+		TimeKey:        "time",
+		StacktraceKey:  "trace",
+		LineEnding:     zapcore.DefaultLineEnding,
+		EncodeTime:     customTimeEncoder,          // 自定义时间格式
+		EncodeLevel:    opt.LevelEncoder(),         // 彩色日志等级
+		EncodeCaller:   zapcore.ShortCallerEncoder, // 全路径编码器
 		EncodeDuration: zapcore.SecondsDurationEncoder,
 		EncodeName:     zapcore.FullNameEncoder,
 	}

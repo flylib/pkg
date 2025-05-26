@@ -1,6 +1,9 @@
 package zaplog
 
-import Ilog "github.com/flylib/interface"
+import (
+	Ilog "github.com/flylib/interface"
+	"go.uber.org/zap/zapcore"
+)
 
 type Option func(o *option)
 
@@ -15,7 +18,8 @@ type option struct {
 	maxAge          int //文件最多保存多少天
 	formatJsonStyle bool
 	minLogLevel     Ilog.Level
-	depth           int //default 1
+	depth           int
+	color           bool
 }
 
 // 同步写入文件
@@ -67,8 +71,23 @@ func WithMinLogLevel(lv Ilog.Level) Option {
 	}
 }
 
+// default 1
 func WithCallDepth(depth int) Option {
 	return func(o *option) {
 		o.depth = depth
 	}
+}
+
+// default false
+func WithColorEncoder() Option {
+	return func(o *option) {
+		o.color = true
+	}
+}
+
+func (o *option) LevelEncoder() zapcore.LevelEncoder {
+	if o.color {
+		return zapcore.LowercaseColorLevelEncoder
+	}
+	return zapcore.LowercaseLevelEncoder
 }

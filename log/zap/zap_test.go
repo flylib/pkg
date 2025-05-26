@@ -11,6 +11,7 @@ func TestZaplog(t *testing.T) {
 		WithSyncConsole(),
 		//MinPrintLevel(DebugLevel),
 		WithMinLogLevel(Ilog.DebugLevel),
+		WithColorEncoder(),
 	)
 	i := 1
 	logger.Debug("debug", i)
