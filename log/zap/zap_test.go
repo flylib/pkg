@@ -1,6 +1,7 @@
 package zaplog
 
 import (
+	Ilog "github.com/flylib/interface"
 	"testing"
 )
 
@@ -8,15 +9,17 @@ func TestZaplog(t *testing.T) {
 	logger := NewZapLogger(
 		WithSyncFile("./info.log"),
 		WithSyncConsole(),
-		WithCallDepth(1),
 		//MinPrintLevel(DebugLevel),
+		WithMinLogLevel(Ilog.DebugLevel),
 	)
+	i := 1
+	logger.Debug("debug", i)
+	logger.Info("info", i)
+	logger.Warn("warn", i)
+	logger.Error("error", i)
 
-	for i := 0; i < 1; i++ {
-		logger.Debug("hello", i)
-		logger.Warn("hello", i)
-		logger.Infof("hello %d", i)
-		logger.Warnf("hello %d", i)
-		logger.Errorf("hello %d", i)
-	}
+	logger.Debugf("debug %d", i)
+	logger.Infof("info %d", i)
+	logger.Warnf("warn %d", i)
+	logger.Errorf("error %d", i)
 }

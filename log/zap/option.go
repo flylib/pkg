@@ -15,7 +15,7 @@ type option struct {
 	maxAge          int //文件最多保存多少天
 	formatJsonStyle bool
 	minLogLevel     Ilog.Level
-	depth           int
+	depth           int //default 1
 }
 
 // 同步写入文件
