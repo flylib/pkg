@@ -7,18 +7,19 @@ import (
 
 type Cli struct {
 	*redis.Client
+	opt *redis.Options
 }
 
 func Connect(options ...Option) (*Cli, error) {
-	o := newOption()
+	opt := newOption()
 	for _, f := range options {
-		f(o)
+		f(opt)
 	}
-	db := redis.NewClient(o)
+	db := redis.NewClient(opt)
 
 	err := db.Ping(context.Background()).Err()
 	if err != nil {
 		return nil, err
 	}
-	return &Cli{db}, nil
+	return &Cli{db, opt}, nil
 }
